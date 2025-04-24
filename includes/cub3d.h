@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/24 19:43:59 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/24 20:13:55 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <fcntl.h>
 # include <math.h>
 # include <string.h>
-# include "mlx.h"
-# include "../libft/libft.h"
+# include "../srcs/minilibx-linux/mlx.h"
+# include "../srcs/libft/libft.h"
 
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
@@ -185,7 +185,6 @@ void	free_textures(t_game *game);
 /* utils */
 int		error_msg(char *msg);
 void	free_split(char **split);
-int		is_valid_extension(char *filename, char *ext);
 int		is_player(char c);
 int		rgb_to_int(int r, int g, int b);
 int		get_next_line(int fd, char **line);
