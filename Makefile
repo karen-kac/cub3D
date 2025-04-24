@@ -6,7 +6,7 @@
 #    By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 10:37:24 by myokono           #+#    #+#              #
-#    Updated: 2025/04/24 18:55:30 by myokono          ###   ########.fr        #
+#    Updated: 2025/04/24 20:12:29 by myokono          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 # ライブラリ
-LIBFT_DIR = libft
+LIBFT_DIR = srcs/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-MLX_DIR = minilibx-linux
+MLX_DIR = srcs/minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
