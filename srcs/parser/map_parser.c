@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:02 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 15:59:41 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:08:12 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	convert_map_data(t_game *game, char **map_lines, int height)
 	}
 	game->map.grid = malloc(sizeof(char *) * (height + 1));
 	if (!game->map.grid)
-		return (printf("here3"), error_msg(ERR_MEMORY));
+		return (error_msg(ERR_MEMORY));
 	i = 0;
 	while (i < height)
 	{
@@ -59,7 +59,6 @@ int	convert_map_data(t_game *game, char **map_lines, int height)
 			}
 			free(game->map.grid);
 			game->map.grid = NULL;
-			printf("here2");
 			return (error_msg(ERR_MEMORY));
 		}
 		j = 0;
@@ -81,23 +80,14 @@ int	convert_map_data(t_game *game, char **map_lines, int height)
 }
 
 
-
-int	parse_map(t_game *game, char *filename)
+static int	read_map_lines(int fd, char ***map_lines, int *height)
 {
-	int		fd;
 	char	*line;
-	char	**map_lines;
 	char	**new_map_lines;
-	int		height;
 	int		i;
 
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (error_msg(ERR_FILE));
-	if (!parse_config(game, fd))
-		return (close(fd), 0);
-	map_lines = NULL;
-	height = 0;
+	*map_lines = NULL;
+	*height = 0;
 	line = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -106,27 +96,38 @@ int	parse_map(t_game *game, char *filename)
 			free(line);
 			continue ;
 		}
-		new_map_lines = malloc(sizeof(char *) * (height + 2));
+		new_map_lines = malloc(sizeof(char *) * (*height + 2));
 		if (!new_map_lines)
-		{
-			free(line);
-			close(fd);
-			printf("here");
-			return (error_msg(ERR_MEMORY));
-		}
+			return (free(line), error_msg(ERR_MEMORY));
 		i = 0;
-		while (i < height)
+		while (i < *height)
 		{
-			new_map_lines[i] = map_lines[i];
+			new_map_lines[i] = (*map_lines)[i];
 			i++;
 		}
-		new_map_lines[height] = line;
-		new_map_lines[height + 1] = NULL;
-		free(map_lines);
-		map_lines = new_map_lines;
-		height++;
+		new_map_lines[*height] = line;
+		new_map_lines[*height + 1] = NULL;
+		free(*map_lines);
+		*map_lines = new_map_lines;
+		(*height)++;
 	}
 	free(line);
+	return (1);
+}
+
+int	parse_map(t_game *game, char *filename)
+{
+	int		fd;
+	char	**map_lines;
+	int		height;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (error_msg(ERR_FILE));
+	if (!parse_config(game, fd))
+		return (close(fd), 0);
+	if (!read_map_lines(fd, &map_lines, &height))
+		return (close(fd), 0);
 	close(fd);
 	if (height == 0)
 		return (free(map_lines), error_msg(ERR_MAP));
