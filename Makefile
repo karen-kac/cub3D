@@ -32,6 +32,7 @@ SRC_DIR = srcs
 SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/init/init.c \
       $(SRC_DIR)/parser/map_parser.c \
+      $(SRC_DIR)/parser/map_checker.c \
       $(SRC_DIR)/parser/config_parser.c \
       $(SRC_DIR)/utils/utils.c \
       $(SRC_DIR)/raycasting/raycasting.c \
