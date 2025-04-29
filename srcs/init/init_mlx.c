@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:38:23 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:41:18 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 17:16:36 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	init_mlx(t_game *game)
 		return (error_msg(ERR_MEMORY));
 	}
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
-									  &game->img.line_length, &game->img.endian);
-	
+			&game->img.line_length, &game->img.endian);
 	return (1);
 }
