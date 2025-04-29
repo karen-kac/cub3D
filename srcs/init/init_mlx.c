@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:38:23 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:39:32 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:41:18 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_game(t_game *game)
 	game->ceiling_color = -1;
 }
 
-int init_mlx(t_game *game)
+int	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)

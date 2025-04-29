@@ -6,42 +6,45 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:37:43 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:38:25 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:44:26 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_player(t_game *game)
+static void	set_dir(t_game *game, double dir_x, double dir_y)
+{
+	game->player.dir_x = dir_x;
+	game->player.dir_y = dir_y;
+}
+static void	set_plane(t_game *game, double plane_x, double plane_y)
+{
+	game->player.plane_x = plane_x;
+	game->player.plane_y = plane_y;
+}
+
+void	init_player(t_game *game)
 {
 	game->player.pos_x = game->map.player_x + 0.5;
 	game->player.pos_y = game->map.player_y + 0.5;
 	if (game->map.player_dir == 'N')
 	{
-		game->player.dir_x = 0;
-		game->player.dir_y = -1;
-		game->player.plane_x = 0.66;
-		game->player.plane_y = 0;
+		set_dir(game, 0, -1);
+		set_plane(game, 0.66, 0);
 	}
 	else if (game->map.player_dir == 'S')
 	{
-		game->player.dir_x = 0;
-		game->player.dir_y = 1;
-		game->player.plane_x = -0.66;
-		game->player.plane_y = 0;
+		set_dir(game, 0, 1);
+		set_plane(game, -0.66, 0);
 	}
 	else if (game->map.player_dir == 'E')
 	{
-		game->player.dir_x = 1;
-		game->player.dir_y = 0;
-		game->player.plane_x = 0;
-		game->player.plane_y = 0.66;
+		set_dir(game, 1, 0);
+		set_plane(game, 0, 0.66);
 	}
 	else if (game->map.player_dir == 'W')
 	{
-		game->player.dir_x = -1;
-		game->player.dir_y = 0;
-		game->player.plane_x = 0;
-		game->player.plane_y = -0.66;
+		set_dir(game, -1, 0);
+		set_plane(game, 0, -0.66);
 	}
 }
