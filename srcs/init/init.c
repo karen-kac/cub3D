@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:38:23 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/27 19:47:51 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:34:24 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int init_mlx(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 		game->mlx = NULL;
-		return (printf("here7"),error_msg(ERR_MEMORY));
+		return (error_msg(ERR_MEMORY));
 	}
 	
 	/* イメージ初期化 */
@@ -45,7 +45,7 @@ int init_mlx(t_game *game)
 		free(game->mlx);
 		game->mlx = NULL;
 		game->win = NULL;
-		return (printf("here8"),error_msg(ERR_MEMORY));
+		return (error_msg(ERR_MEMORY));
 	}
 	
 	/* イメージデータ取得 */

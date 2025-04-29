@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:37 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:20:34 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:34:53 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	parse_texture(t_game *game, char *line, int dir)
 		line++;
 	path = ft_strdup(line);
 	if (!path)
-		return (printf("here5"), error_msg(ERR_MEMORY));
+		return (error_msg(ERR_MEMORY));
 	if (game->tex[dir].path)
 	{
 		free(game->tex[dir].path);
@@ -58,7 +58,7 @@ int	parse_color(t_game *game, char *line, char type)
 		line++;
 	rgb = ft_split(line, ',');
 	if (!rgb)
-		return (printf("here4"), error_msg(ERR_MEMORY));
+		return (error_msg(ERR_MEMORY));
 	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
 		return (free_split(rgb), error_msg(ERR_CONFIG));
 	r = ft_atoi(rgb[0]);
