@@ -6,11 +6,16 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:58:40 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:14:08 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:16:31 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	is_player(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
 
 static int	set_player_info(t_game *game, int x, int y, int *player_found)
 {
