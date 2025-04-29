@@ -12,12 +12,30 @@
 
 #include "cub3d.h"
 
-int parse_config(t_game *game, int fd)
+static int	parse_config_line(t_game *game, char *line)
 {
-	char *line;
-	int ret;
-	int count = 0;
+	if (strncmp(line, "NO ", 3) == 0)
+		return (parse_texture(game, line + 3, NORTH));
+	else if (strncmp(line, "SO ", 3) == 0)
+		return (parse_texture(game, line + 3, SOUTH));
+	else if (strncmp(line, "WE ", 3) == 0)
+		return (parse_texture(game, line + 3, WEST));
+	else if (strncmp(line, "EA ", 3) == 0)
+		return (parse_texture(game, line + 3, EAST));
+	else if (strncmp(line, "F ", 2) == 0)
+		return (parse_color(game, line + 2, 'F'));
+	else if (strncmp(line, "C ", 2) == 0)
+		return (parse_color(game, line + 2, 'C'));
+	return (0);
+}
 
+int	parse_config(t_game *game, int fd)
+{
+	char	*line;
+	int		ret;
+	int		count;
+
+	count = 0;
 	while (count < 6)
 	{
 		ret = get_next_line(fd, &line);
@@ -30,31 +48,17 @@ int parse_config(t_game *game, int fd)
 		if (line[0] == '\0')
 		{
 			free(line);
-			continue;
+			continue ;
 		}
-		if (strncmp(line, "NO ", 3) == 0)
-			ret = parse_texture(game, line + 3, NORTH);
-		else if (strncmp(line, "SO ", 3) == 0)
-			ret = parse_texture(game, line + 3, SOUTH);
-		else if (strncmp(line, "WE ", 3) == 0)
-			ret = parse_texture(game, line + 3, WEST);
-		else if (strncmp(line, "EA ", 3) == 0)
-			ret = parse_texture(game, line + 3, EAST);
-		else if (strncmp(line, "F ", 2) == 0)
-			ret = parse_color(game, line + 2, 'F');
-		else if (strncmp(line, "C ", 2) == 0)
-			ret = parse_color(game, line + 2, 'C');
-		else
-			ret = 0;
-		if (ret)
-			count++;
+		ret = parse_config_line(game, line);
 		free(line);
 		if (!ret)
-			return (0);
+			return (error_msg(ERR_CONFIG));
+		count++;
 	}
-
 	return (1);
 }
+
 
 int	parse_texture(t_game *game, char *line, int dir)
 {
