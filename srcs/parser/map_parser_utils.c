@@ -6,11 +6,11 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:31:08 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:10:10 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:11:45 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "includes/cub3d.h"
+#include "cub3d.h"
 
 int	convert_map_data(t_game *game, char **map_lines, int height)
 {
