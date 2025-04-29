@@ -6,7 +6,7 @@
 #    By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 10:37:24 by myokono           #+#    #+#              #
-#    Updated: 2025/04/24 20:12:29 by myokono          ###   ########.fr        #
+#    Updated: 2025/04/27 19:42:54 by myokono          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/render/render.c \
       $(SRC_DIR)/utils/texture.c \
       $(SRC_DIR)/input/input.c \
-      $(SRC_DIR)/utils/cleanup.c
+      $(SRC_DIR)/utils/cleanup.c \
+      $(SRC_DIR)/utils/get_next_line.c \
+	  
 
 # オブジェクトファイル
 OBJ = $(SRC:.c=.o)

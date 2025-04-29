@@ -6,11 +6,11 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:51:28 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/23 10:53:38 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/27 19:39:59 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 void	free_textures(t_game *game)
 {
