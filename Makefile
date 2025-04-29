@@ -6,7 +6,7 @@
 #    By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 10:37:24 by myokono           #+#    #+#              #
-#    Updated: 2025/04/27 19:42:54 by myokono          ###   ########.fr        #
+#    Updated: 2025/04/29 15:58:57 by myokono          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/init/init.c \
       $(SRC_DIR)/parser/map_parser.c \
       $(SRC_DIR)/parser/map_checker.c \
+      $(SRC_DIR)/parser/player.c \
       $(SRC_DIR)/parser/config_parser.c \
       $(SRC_DIR)/utils/utils.c \
       $(SRC_DIR)/raycasting/raycasting.c \
