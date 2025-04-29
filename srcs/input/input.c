@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:41:39 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 17:34:48 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 17:42:08 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,19 @@ void handle_keys(t_game *game)
 	}
 	if (game->keys[KEY_A])
 	{
-		if (game->map.grid[(int)game->player.pos_y][(int)(game->player.pos_x - game->player.dir_y * MOVE_SPEED)] != '1')
-			game->player.pos_x -= game->player.dir_y * MOVE_SPEED;
-		if (game->map.grid[(int)(game->player.pos_y + game->player.dir_x * MOVE_SPEED)][(int)game->player.pos_x] != '1')
-			game->player.pos_y += game->player.dir_x * MOVE_SPEED;
-	}
-	if (game->keys[KEY_D])
-	{
 		if (game->map.grid[(int)game->player.pos_y][(int)(game->player.pos_x + game->player.dir_y * MOVE_SPEED)] != '1')
 			game->player.pos_x += game->player.dir_y * MOVE_SPEED;
 		if (game->map.grid[(int)(game->player.pos_y - game->player.dir_x * MOVE_SPEED)][(int)game->player.pos_x] != '1')
 			game->player.pos_y -= game->player.dir_x * MOVE_SPEED;
 	}
+	if (game->keys[KEY_D])
+	{
+		if (game->map.grid[(int)game->player.pos_y][(int)(game->player.pos_x - game->player.dir_y * MOVE_SPEED)] != '1')
+			game->player.pos_x -= game->player.dir_y * MOVE_SPEED;
+		if (game->map.grid[(int)(game->player.pos_y + game->player.dir_x * MOVE_SPEED)][(int)game->player.pos_x] != '1')
+			game->player.pos_y += game->player.dir_x * MOVE_SPEED;
+	}
+	
 	if (game->keys[KEY_LEFT])
 	{
 		old_dir_x = game->player.dir_x;
