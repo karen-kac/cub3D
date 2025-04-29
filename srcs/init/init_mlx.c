@@ -6,11 +6,11 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:38:23 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 17:16:36 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 17:31:08 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	init_game(t_game *game)
 {
