@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:02 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 15:52:01 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 15:59:41 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@ static void	free_map_lines(char **lines, int height)
 	free(lines);
 }
 
-
-
 int	convert_map_data(t_game *game, char **map_lines, int height)
 {
-	int max_width;
-	int i;
-	int j;
+	int	max_width;
+	int	i;
+	int	j;
 
 	max_width = 0;
 	i = 0;
@@ -79,38 +77,6 @@ int	convert_map_data(t_game *game, char **map_lines, int height)
 	game->map.grid[height] = NULL;
 	game->map.width = max_width;
 	game->map.height = height;
-	return (1);
-}
-
-int	find_player(t_game *game)
-{
-	int	i;
-	int	j;
-	int	player_found;
-	
-	player_found = 0;
-	i = 0;
-	while (i < game->map.height)
-	{
-		j = 0;
-		while (j < game->map.width)
-		{
-			if (is_player(game->map.grid[i][j]))
-			{
-				if (player_found)
-					return (error_msg(ERR_MAP));
-				game->map.player_x = j;
-				game->map.player_y = i;
-				game->map.player_dir = game->map.grid[i][j];
-				game->map.grid[i][j] = '0';
-				player_found = 1;
-			}
-			j++;
-		}
-		i++;
-	}
-	if (!player_found)
-		return (error_msg(ERR_MAP));
 	return (1);
 }
 
