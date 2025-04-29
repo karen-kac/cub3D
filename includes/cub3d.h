@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:16:44 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 18:23:15 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,12 @@ int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
 int		exit_hook(t_game *game);
 void	handle_keys(t_game *game);
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	strafe_left(t_game *game);
+void	strafe_right(t_game *game);
+void	rotate_left(t_game *game);
+void	rotate_right(t_game *game);
 
 /* clean */
 void	cleanup_game(t_game *game);
