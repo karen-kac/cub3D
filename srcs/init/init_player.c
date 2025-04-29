@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:37:43 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:44:26 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:45:50 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	set_dir(t_game *game, double dir_x, double dir_y)
 	game->player.dir_x = dir_x;
 	game->player.dir_y = dir_y;
 }
+
 static void	set_plane(t_game *game, double plane_x, double plane_y)
 {
 	game->player.plane_x = plane_x;
