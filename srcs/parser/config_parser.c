@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:37 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/27 19:45:50 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:02:20 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,6 @@ static int	parse_config_line(t_game *game, char *line)
 		return (parse_color(game, line + 2, 'C'));
 	return (0);
 }
-
-int	parse_config(t_game *game, int fd)
-{
-	char	*line;
-	int		ret;
-	int		count;
-
-	count = 0;
-	while (count < 6)
-	{
-		ret = get_next_line(fd, &line);
-		if (ret <= 0)
-		{
-			if (line)
-				free(line);
-			return (error_msg(ERR_CONFIG));
-		}
-		if (line[0] == '\0')
-		{
-			free(line);
-			continue ;
-		}
-		ret = parse_config_line(game, line);
-		free(line);
-		if (!ret)
-			return (error_msg(ERR_CONFIG));
-		count++;
-	}
-	return (1);
-}
-
 
 int	parse_texture(t_game *game, char *line, int dir)
 {
@@ -102,5 +71,36 @@ int parse_color(t_game *game, char *line, char type)
 	else if (type == 'C')
 		game->ceiling_color = rgb_to_int(r, g, b);
 	free_split(rgb);
+	return (1);
+}
+
+
+int	parse_config(t_game *game, int fd)
+{
+	char	*line;
+	int		ret;
+	int		count;
+
+	count = 0;
+	while (count < 6)
+	{
+		ret = get_next_line(fd, &line);
+		if (ret <= 0)
+		{
+			if (line)
+				free(line);
+			return (error_msg(ERR_CONFIG));
+		}
+		if (line[0] == '\0')
+		{
+			free(line);
+			continue ;
+		}
+		ret = parse_config_line(game, line);
+		free(line);
+		if (!ret)
+			return (error_msg(ERR_CONFIG));
+		count++;
+	}
 	return (1);
 }
