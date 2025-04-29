@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:41:39 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 17:42:08 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 17:47:28 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,18 @@ int key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		exit_hook(game);
-	else if (keycode < 256)
+	else if ((keycode >= 0 && keycode < 256) || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		game->keys[keycode] = 1;
 	return (0);
 }
 
 int key_release(int keycode, t_game *game)
 {
-	if (keycode < 256)
+	if ((keycode >= 0 && keycode < 256) || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		game->keys[keycode] = 0;
 	return (0);
 }
+
 
 int exit_hook(t_game *game)
 {
