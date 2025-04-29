@@ -6,7 +6,7 @@
 #    By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 10:37:24 by myokono           #+#    #+#              #
-#    Updated: 2025/04/29 16:11:22 by myokono          ###   ########.fr        #
+#    Updated: 2025/04/29 16:39:22 by myokono          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ INC = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
 # ソースファイル
 SRC_DIR = srcs
 SRC = $(SRC_DIR)/main.c \
-      $(SRC_DIR)/init/init.c \
+      $(SRC_DIR)/init/init_mlx.c \
+      $(SRC_DIR)/init/init_player.c \
+      $(SRC_DIR)/init/init_texture.c \
       $(SRC_DIR)/parser/map_parser.c \
       $(SRC_DIR)/parser/map_parser_utils.c \
       $(SRC_DIR)/parser/map_checker.c \
