@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 20:34:39 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/27 19:43:04 by myokono          ###   ########.fr       */
+/*   Created: 2025/04/23 10:42:03 by myokono           #+#    #+#             */
+/*   Updated: 2025/04/27 19:39:59 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	get_next_line(int fd, char **line)
+int	error_msg(char *msg)
 {
-	int		ret;
-	int		i;
-	char	buffer[1024];
+	ft_putendl_fd(msg, 2);
+	return (0);
+}
 
-	if (fd < 0 || !line)
-		return (-1);
-	*line = NULL;
-	i = 0;
-	while ((ret = read(fd, &buffer[i], 1)) > 0)
-	{
-		if (buffer[i] == '\n' || buffer[i] == '\0')
-			break ;
-		i++;
-	}
-	if (ret < 0)
-		return (-1);
-	if (i == 0 && ret == 0)
-		return (0);
-	buffer[i] = '\0';
-	*line = ft_strdup(buffer);
-	if (!*line)
-		return (-1);
-	return (1);
+int	is_player(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	rgb_to_int(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
 }

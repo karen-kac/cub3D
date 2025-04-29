@@ -6,12 +6,11 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:02 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/24 20:33:24 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/27 19:45:16 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "includes/cub3d.h"
-
+#include "cub3d.h"
 
 static void	free_map_lines(char **lines, int height)
 {
@@ -28,20 +27,20 @@ static void	free_map_lines(char **lines, int height)
 	free(lines);
 }
 
-static char **append_line(char **old_lines, int height, char *line)
-{
-	char **new_lines = malloc(sizeof(char *) * (height + 2));
-	int i;
+// static char **append_line(char **old_lines, int height, char *line)
+// {
+// 	char **new_lines = malloc(sizeof(char *) * (height + 2));
+// 	int i;
 
-	if (!new_lines)
-		return (NULL);
-	for (i = 0; i < height; i++)
-		new_lines[i] = old_lines[i];
-	new_lines[height] = line;
-	new_lines[height + 1] = NULL;
-	free(old_lines);
-	return new_lines;
-}
+// 	if (!new_lines)
+// 		return (NULL);
+// 	for (i = 0; i < height; i++)
+// 		new_lines[i] = old_lines[i];
+// 	new_lines[height] = line;
+// 	new_lines[height + 1] = NULL;
+// 	free(old_lines);
+// 	return new_lines;
+// }
 
 int	parse_map(t_game *game, char *filename)
 {
@@ -72,6 +71,7 @@ int	parse_map(t_game *game, char *filename)
 		{
 			free(line);
 			close(fd);
+			printf("here");
 			return (error_msg(ERR_MEMORY));
 		}
 		i = 0;
@@ -110,21 +110,21 @@ int	parse_map(t_game *game, char *filename)
 
 int	convert_map_data(t_game *game, char **map_lines, int height)
 {
-	int	max_width;
-	int	i;
-	int	j;
+	int max_width;
+	int i;
+	int j;
 
 	max_width = 0;
 	i = 0;
 	while (i < height)
 	{
-		if (strlen(map_lines[i]) > max_width)
+		if (strlen(map_lines[i]) > (size_t)max_width)
 			max_width = strlen(map_lines[i]);
 		i++;
 	}
 	game->map.grid = malloc(sizeof(char *) * (height + 1));
 	if (!game->map.grid)
-		return (error_msg(ERR_MEMORY));
+		return (printf("here3"), error_msg(ERR_MEMORY));
 	i = 0;
 	while (i < height)
 	{
@@ -140,12 +140,13 @@ int	convert_map_data(t_game *game, char **map_lines, int height)
 			}
 			free(game->map.grid);
 			game->map.grid = NULL;
+			printf("here2");
 			return (error_msg(ERR_MEMORY));
 		}
 		j = 0;
 		while (j < max_width)
 		{
-			if (j < strlen(map_lines[i]))
+			if ((size_t)j < strlen(map_lines[i]))
 				game->map.grid[i][j] = map_lines[i][j];
 			else
 				game->map.grid[i][j] = ' ';
@@ -195,9 +196,9 @@ int	find_player(t_game *game)
 int	check_map(t_game *game)
 {
 	int	i;
-	int j;
+	int	j;
 
-	i =0;
+	i = 0;
 	while (i < game->map.height)
 	{
 		j = 0;
@@ -205,14 +206,16 @@ int	check_map(t_game *game)
 		{
 			if (game->map.grid[i][j] == '0' || is_player(game->map.grid[i][j]))
 			{
-				if (i == 0 || i == game->map.height - 1 || 
+				if (i == 0 || i == game->map.height - 1 || \
 					j == 0 || j == game->map.width - 1)
 					return (error_msg(ERR_MAP));
-				if (game->map.grid[i-1][j] == ' ' || game->map.grid[i+1][j] == ' ' ||
-					game->map.grid[i][j-1] == ' ' || game->map.grid[i][j+1] == ' ')
+				if (game->map.grid[i-1][j] == ' ' || \
+					game->map.grid[i+1][j] == ' ' || \
+					game->map.grid[i][j-1] == ' ' || \
+					game->map.grid[i][j+1] == ' ')
 					return (error_msg(ERR_MAP));
 			}
-			if (game->map.grid[i][j] != '0' && game->map.grid[i][j] != '1' && 
+			if (game->map.grid[i][j] != '0' && game->map.grid[i][j] != '1' && \
 				game->map.grid[i][j] != ' ' && !is_player(game->map.grid[i][j]))
 				return (error_msg(ERR_MAP));
 			j++;
