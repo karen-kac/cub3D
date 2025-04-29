@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:37 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:02:20 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:20:34 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	parse_config_line(t_game *game, char *line)
 int	parse_texture(t_game *game, char *line, int dir)
 {
 	char	*path;
-	
+
 	while (*line == ' ')
 		line++;
 	path = ft_strdup(line);
@@ -47,7 +47,7 @@ int	parse_texture(t_game *game, char *line, int dir)
 	return (1);
 }
 
-int parse_color(t_game *game, char *line, char type)
+int	parse_color(t_game *game, char *line, char type)
 {
 	int		r;
 	int		g;
@@ -73,7 +73,6 @@ int parse_color(t_game *game, char *line, char type)
 	free_split(rgb);
 	return (1);
 }
-
 
 int	parse_config(t_game *game, int fd)
 {
