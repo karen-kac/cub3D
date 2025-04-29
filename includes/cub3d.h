@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/27 20:06:47 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:16:44 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int		parse_config(t_game *game, int fd);
 int		parse_color(t_game *game, char *line, char type);
 int		parse_texture(t_game *game, char *line, int dir);
 int		check_map(t_game *game);
+int		is_player(char c);
 int		find_player(t_game *game);
 int		convert_map_data(t_game *game, char **map_lines, int height);
 
@@ -186,7 +187,6 @@ void	free_textures(t_game *game);
 /* utils */
 int		error_msg(char *msg);
 void	free_split(char **split);
-int		is_player(char c);
 int		rgb_to_int(int r, int g, int b);
 int		get_next_line(int fd, char **line);
 bool	is_valid_extension(char *filename, char *ext);
