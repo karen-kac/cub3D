@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 18:29:59 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 18:50:58 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,8 @@ int		convert_map_data(t_game *game, char **map_lines, int height);
 
 /* raycasting */
 void	calculate_ray(t_game *game, int x);
+void	calculate_wall_height(t_game *game);
+void	calculate_wall_distance(t_game *game);
 void	raycasting(t_game *game);
 
 /* render */
