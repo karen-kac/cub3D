@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:51:50 by myokono           #+#    #+#             */
-/*   Updated: 2023/09/27 13:54:16 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 19:02:25 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static int	ft_maxmini(long num, char c)
 {
-	if ((num > LONG_MAX / 10 && ft_isdigit(c) == 1) || \
-		(num == LONG_MAX / 10 && c - '0' > LONG_MAX % 10))
+	if ((num > LONG_MAX / 10 && ft_isdigit(c) == 1)
+		|| (num == LONG_MAX / 10 && c - '0' > LONG_MAX % 10))
 		return (-1);
 	return (0);
 }
