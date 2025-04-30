@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
+/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 11:44:43 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/04/30 18:50:58 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define TITLE "cub3D"
+#define INFINITY_DIST 1e30
 
 /* key */
 # define KEY_ESC 65307
@@ -157,6 +158,9 @@ int		find_player(t_game *game);
 int		convert_map_data(t_game *game, char **map_lines, int height);
 
 /* raycasting */
+void	calculate_ray(t_game *game, int x);
+void	calculate_wall_height(t_game *game);
+void	calculate_wall_distance(t_game *game);
 void	raycasting(t_game *game);
 
 /* render */
