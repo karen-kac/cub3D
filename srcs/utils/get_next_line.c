@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:34:39 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/27 19:43:04 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 13:07:23 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int	get_next_line(int fd, char **line)
 		return (-1);
 	*line = NULL;
 	i = 0;
-	while ((ret = read(fd, &buffer[i], 1)) > 0)
+	ret = read(fd, &buffer[i], 1);
+	while (ret > 0)
 	{
 		if (buffer[i] == '\n' || buffer[i] == '\0')
 			break ;
 		i++;
+		ret = read(fd, &buffer[i], 1);
 	}
 	if (ret < 0)
 		return (-1);
