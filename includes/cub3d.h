@@ -6,14 +6,14 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 18:50:58 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 19:01:05 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include <stdbool.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -26,7 +26,7 @@
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define TITLE "cub3D"
-#define INFINITY_DIST 1e30
+# define INFINITY_DIST 1e30
 
 /* key */
 # define KEY_ESC 65307
