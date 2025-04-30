@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:41:39 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 18:27:40 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:12:52 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	key_release(int keycode, t_game *game)
 int	exit_hook(t_game *game)
 {
 	cleanup_game(game);
-	exit(0);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 

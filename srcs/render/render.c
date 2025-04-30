@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:41:21 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 18:43:33 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:44:35 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	render(t_game *game)
+void	put_pixel(t_img *img, int x, int y, int color)
 {
-	handle_keys(game);
-	render_background(game);
-	raycasting(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-	return (0);
+	char	*dst;
+
+	if (x < 0 || y < 0 || x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT)
+		return ;
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
 
-void	render_background(t_game *game)
+static void	render_background(t_game *game)
 {
 	int	x;
 	int	y;
@@ -50,22 +51,11 @@ void	render_background(t_game *game)
 	}
 }
 
-void	put_pixel(t_img *img, int x, int y, int color)
+int	render(t_game *game)
 {
-	char	*dst;
-
-	if (x < 0 || y < 0 || x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT)
-		return ;
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-int	get_tex_color(t_img *img, int x, int y)
-{
-	char	*dst;
-
-	if (x < 0 || y < 0 || x >= img->width || y >= img->height)
-		return (0);
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	return (*(unsigned int*)dst);
+	handle_keys(game);
+	render_background(game);
+	raycasting(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+	return (0);
 }

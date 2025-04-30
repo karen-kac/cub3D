@@ -6,14 +6,14 @@
 /*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:40:24 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 11:08:57 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:43:11 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* レイの計算 */
-static void calculate_ray(t_game *game, int x)
+void calculate_ray(t_game *game, int x)
 {
     /* カメラ平面上のX座標（-1.0〜1.0） */
     game->ray.camera_x = 2.0 * x / (double)WINDOW_WIDTH - 1.0;
@@ -94,7 +94,7 @@ static void perform_dda(t_game *game)
 }
 
 /* 壁までの距離を計算 */
-static void calculate_wall_distance(t_game *game)
+void calculate_wall_distance(t_game *game)
 {
     /* 壁までの垂直距離を計算 */
     if (game->ray.side == 0)
@@ -106,7 +106,7 @@ static void calculate_wall_distance(t_game *game)
 }
 
 /* 壁の高さを計算 */
-static void calculate_wall_height(t_game *game)
+void calculate_wall_height(t_game *game)
 {
     /* 壁の高さを計算 */
     game->ray.line_height = (int)(WINDOW_HEIGHT / game->ray.perp_wall_dist);
@@ -138,7 +138,7 @@ static void calculate_wall_height(t_game *game)
 }
 
 /* テクスチャX座標の計算 */
-static void calculate_texture_x(t_game *game)
+void calculate_texture_x(t_game *game)
 {
     /* 壁の当たった位置を計算 */
     if (game->ray.side == 0)
@@ -160,6 +160,16 @@ static void calculate_texture_x(t_game *game)
     /* テクスチャの開始位置 */
     game->ray.tex_pos = (game->ray.draw_start - WINDOW_HEIGHT / 2 + game->ray.line_height / 2)
                         * game->ray.tex_step;
+}
+
+static int	get_tex_color(t_img *img, int x, int y)
+{
+	char	*dst;
+
+	if (x < 0 || y < 0 || x >= img->width || y >= img->height)
+		return (0);
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	return (*(unsigned int*)dst);
 }
 
 /* 壁の描画 */
