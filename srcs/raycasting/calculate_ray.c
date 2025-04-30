@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 18:26:30 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 18:28:56 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 18:48:37 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	set_step_and_side_dist(t_game *game)
 		game->ray.side_dist_x = (game->ray.map_x + 1.0 - game->player.pos_x)
 			* game->ray.delta_dist_x;
 	}
-
 	if (game->ray.ray_dir_y < 0)
 	{
 		game->ray.step_y = -1;
@@ -68,17 +67,12 @@ static void	set_step_and_side_dist(t_game *game)
 	}
 }
 
-static void	initialize_ray_state(t_game *game)
-{
-	game->ray.hit = 0;
-	game->ray.side = 0;
-}
-
 void	calculate_ray(t_game *game, int x)
 {
 	set_ray_direction(game, x);
 	set_map_position(game);
 	set_delta_distance(game);
 	set_step_and_side_dist(game);
-	initialize_ray_state(game);
+	game->ray.hit = 0;
+	game->ray.side = 0;
 }
