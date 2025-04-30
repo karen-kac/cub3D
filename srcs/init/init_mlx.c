@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:38:23 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 17:31:08 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 10:43:20 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_game(t_game *game)
 	game->ceiling_color = -1;
 }
 
-int	init_mlx(t_game *game)
+bool	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -44,5 +44,5 @@ int	init_mlx(t_game *game)
 	}
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
 			&game->img.line_length, &game->img.endian);
-	return (1);
+	return (true);
 }
