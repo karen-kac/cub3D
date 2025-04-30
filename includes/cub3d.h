@@ -6,7 +6,7 @@
 /*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 11:08:34 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:44:43 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,10 +161,7 @@ void	raycasting(t_game *game);
 
 /* render */
 int		render(t_game *game);
-void	render_background(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
-int		get_tex_color(t_img *img, int x, int y);
-
 /* input */
 int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
