@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:02 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:10:03 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 10:37:48 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	read_map_lines(int fd, char ***map_lines, int *height)
 	return (1);
 }
 
-int	parse_map(t_game *game, char *filename)
+bool	parse_map(t_game *game, char *filename)
 {
 	int		fd;
 	char	**map_lines;
@@ -71,27 +71,27 @@ int	parse_map(t_game *game, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (error_msg(ERR_FILE));
-	if (!parse_config(game, fd))
-		return (close(fd), 0);
-	if (!read_map_lines(fd, &map_lines, &height))
-		return (close(fd), 0);
+	if (parse_config(game, fd) == false)
+		return (close(fd), false);
+	if (read_map_lines(fd, &map_lines, &height) == false)
+		return (close(fd), false);
 	close(fd);
 	if (height == 0)
 		return (free(map_lines), error_msg(ERR_MAP));
 	if (!convert_map_data(game, map_lines, height))
-		return (free_map_lines(map_lines, height), 0);
-	if (!check_map(game))
+		return (free_map_lines(map_lines, height), false);
+	if (check_map(game) == false)
 	{
 		free_map_lines(map_lines, height);
 		free_map(&game->map);
-		return (0);
+		return (false);
 	}
-	if (!find_player(game))
+	if (find_player(game) == false)
 	{
 		free_map_lines(map_lines, height);
 		free_map(&game->map);
-		return (0);
+		return (false);
 	}
 	free_map_lines(map_lines, height);
-	return (1);
+	return (true);
 }

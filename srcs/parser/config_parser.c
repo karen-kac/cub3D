@@ -3,40 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   config_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:37 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:34:53 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 10:48:56 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	parse_config_line(t_game *game, char *line)
-{
-	if (strncmp(line, "NO ", 3) == 0)
-		return (parse_texture(game, line + 3, NORTH));
-	else if (strncmp(line, "SO ", 3) == 0)
-		return (parse_texture(game, line + 3, SOUTH));
-	else if (strncmp(line, "WE ", 3) == 0)
-		return (parse_texture(game, line + 3, WEST));
-	else if (strncmp(line, "EA ", 3) == 0)
-		return (parse_texture(game, line + 3, EAST));
-	else if (strncmp(line, "F ", 2) == 0)
-		return (parse_color(game, line + 2, 'F'));
-	else if (strncmp(line, "C ", 2) == 0)
-		return (parse_color(game, line + 2, 'C'));
-	return (0);
-}
-
-int	parse_texture(t_game *game, char *line, int dir)
+static bool	parse_texture(t_game *game, char *line, int dir)
 {
 	char	*path;
 
 	while (*line == ' ')
 		line++;
 	path = ft_strdup(line);
-	if (!path)
+	if (path == NULL)
 		return (error_msg(ERR_MEMORY));
 	if (game->tex[dir].path)
 	{
@@ -44,10 +27,10 @@ int	parse_texture(t_game *game, char *line, int dir)
 		game->tex[dir].path = NULL;
 	}
 	game->tex[dir].path = path;
-	return (1);
+	return (true);
 }
 
-int	parse_color(t_game *game, char *line, char type)
+static bool	parse_color(t_game *game, char *line, char type)
 {
 	int		r;
 	int		g;
@@ -57,7 +40,7 @@ int	parse_color(t_game *game, char *line, char type)
 	while (*line == ' ')
 		line++;
 	rgb = ft_split(line, ',');
-	if (!rgb)
+	if (rgb == NULL)
 		return (error_msg(ERR_MEMORY));
 	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
 		return (free_split(rgb), error_msg(ERR_CONFIG));
@@ -71,10 +54,27 @@ int	parse_color(t_game *game, char *line, char type)
 	else if (type == 'C')
 		game->ceiling_color = rgb_to_int(r, g, b);
 	free_split(rgb);
-	return (1);
+	return (true);
 }
 
-int	parse_config(t_game *game, int fd)
+static bool	parse_config_line(t_game *game, char *line)
+{
+	if (strncmp(line, "NO ", 3) == 0)
+		return (parse_texture(game, line + 3, NORTH));
+	else if (strncmp(line, "SO ", 3) == 0)
+		return (parse_texture(game, line + 3, SOUTH));
+	else if (strncmp(line, "WE ", 3) == 0)
+		return (parse_texture(game, line + 3, WEST));
+	else if (strncmp(line, "EA ", 3) == 0)
+		return (parse_texture(game, line + 3, EAST));
+	else if (strncmp(line, "F ", 2) == 0)
+		return (parse_color(game, line + 2, 'F'));
+	else if (strncmp(line, "C ", 2) == 0)
+		return (parse_color(game, line + 2, 'C'));
+	return (false);
+}
+
+bool	parse_config(t_game *game, int fd)
 {
 	char	*line;
 	int		ret;
@@ -97,9 +97,9 @@ int	parse_config(t_game *game, int fd)
 		}
 		ret = parse_config_line(game, line);
 		free(line);
-		if (!ret)
+		if (ret == false)
 			return (error_msg(ERR_CONFIG));
 		count++;
 	}
-	return (1);
+	return (true);
 }
