@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 18:23:15 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:44:43 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,14 +145,12 @@ typedef struct s_game
 /* init */
 void	init_game(t_game *game);
 void	init_player(t_game *game);
-int		init_mlx(t_game *game);
-int		load_textures(t_game *game);
+bool	init_mlx(t_game *game);
+bool	load_textures(t_game *game);
 
 /* parse */
-int		parse_map(t_game *game, char *filename);
-int		parse_config(t_game *game, int fd);
-int		parse_color(t_game *game, char *line, char type);
-int		parse_texture(t_game *game, char *line, int dir);
+bool	parse_map(t_game *game, char *filename);
+bool	parse_config(t_game *game, int fd);
 int		check_map(t_game *game);
 int		is_player(char c);
 int		find_player(t_game *game);
@@ -160,19 +158,10 @@ int		convert_map_data(t_game *game, char **map_lines, int height);
 
 /* raycasting */
 void	raycasting(t_game *game);
-void	calculate_ray(t_game *game, int x);
-void	perform_dda(t_game *game);
-void	calculate_wall_distance(t_game *game);
-void	calculate_wall_height(t_game *game);
-void	calculate_texture_x(t_game *game);
-void	draw_wall(t_game *game, int x);
 
 /* render */
 int		render(t_game *game);
-void	render_background(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
-int		get_tex_color(t_img *img, int x, int y);
-
 /* input */
 int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
@@ -191,7 +180,7 @@ void	free_map(t_map *map);
 void	free_textures(t_game *game);
 
 /* utils */
-int		error_msg(char *msg);
+bool	error_msg(char *msg);
 void	free_split(char **split);
 int		rgb_to_int(int r, int g, int b);
 int		get_next_line(int fd, char **line);

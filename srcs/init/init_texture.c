@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:38:47 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 17:18:16 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 10:42:25 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	load_textures(t_game *game)
+bool	load_textures(t_game *game)
 {
 	int	i;
 
@@ -29,5 +29,5 @@ int	load_textures(t_game *game)
 				&game->tex[i].img.endian);
 		i++;
 	}
-	return (1);
+	return (true);
 }

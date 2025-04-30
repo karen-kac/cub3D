@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:42:03 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/29 16:16:23 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 10:34:49 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ bool	is_valid_extension(char *filename, char *ext)
 	return (true);
 }
 
-int	error_msg(char *msg)
+bool	error_msg(char *msg)
 {
 	ft_putendl_fd(msg, 2);
-	return (0);
+	return (false);
 }
 
 int	rgb_to_int(int r, int g, int b)
