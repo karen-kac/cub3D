@@ -3,44 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:40:24 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/27 19:39:59 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:08:57 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* レイキャスティングの実行 */
-void raycasting(t_game *game)
-{
-    int x;
-    
-    for (x = 0; x < WINDOW_WIDTH; x++)
-    {
-        /* レイの計算 */
-        calculate_ray(game, x);
-        
-        /* DDAアルゴリズムで壁を検出 */
-        perform_dda(game);
-        
-        /* 壁までの距離を計算 */
-        calculate_wall_distance(game);
-        
-        /* 壁の高さを計算 */
-        calculate_wall_height(game);
-        
-        /* テクスチャX座標の計算 */
-        calculate_texture_x(game);
-        
-        /* 壁の描画 */
-        draw_wall(game, x);
-    }
-}
-
 /* レイの計算 */
-void calculate_ray(t_game *game, int x)
+static void calculate_ray(t_game *game, int x)
 {
     /* カメラ平面上のX座標（-1.0〜1.0） */
     game->ray.camera_x = 2.0 * x / (double)WINDOW_WIDTH - 1.0;
@@ -93,7 +66,7 @@ void calculate_ray(t_game *game, int x)
 }
 
 /* DDAアルゴリズムで壁を検出 */
-void perform_dda(t_game *game)
+static void perform_dda(t_game *game)
 {
     /* DDAアルゴリズム */
     while (game->ray.hit == 0)
@@ -121,7 +94,7 @@ void perform_dda(t_game *game)
 }
 
 /* 壁までの距離を計算 */
-void calculate_wall_distance(t_game *game)
+static void calculate_wall_distance(t_game *game)
 {
     /* 壁までの垂直距離を計算 */
     if (game->ray.side == 0)
@@ -133,7 +106,7 @@ void calculate_wall_distance(t_game *game)
 }
 
 /* 壁の高さを計算 */
-void calculate_wall_height(t_game *game)
+static void calculate_wall_height(t_game *game)
 {
     /* 壁の高さを計算 */
     game->ray.line_height = (int)(WINDOW_HEIGHT / game->ray.perp_wall_dist);
@@ -165,7 +138,7 @@ void calculate_wall_height(t_game *game)
 }
 
 /* テクスチャX座標の計算 */
-void calculate_texture_x(t_game *game)
+static void calculate_texture_x(t_game *game)
 {
     /* 壁の当たった位置を計算 */
     if (game->ray.side == 0)
@@ -190,7 +163,7 @@ void calculate_texture_x(t_game *game)
 }
 
 /* 壁の描画 */
-void draw_wall(t_game *game, int x)
+static void draw_wall(t_game *game, int x)
 {
     int y;
     int tex_y;
@@ -212,5 +185,32 @@ void draw_wall(t_game *game, int x)
         
         /* ピクセルを描画 */
         put_pixel(&game->img, x, y, color);
+    }
+}
+
+/* レイキャスティングの実行 */
+void raycasting(t_game *game)
+{
+    int x;
+    
+    for (x = 0; x < WINDOW_WIDTH; x++)
+    {
+        /* レイの計算 */
+        calculate_ray(game, x);
+        
+        /* DDAアルゴリズムで壁を検出 */
+        perform_dda(game);
+        
+        /* 壁までの距離を計算 */
+        calculate_wall_distance(game);
+        
+        /* 壁の高さを計算 */
+        calculate_wall_height(game);
+        
+        /* テクスチャX座標の計算 */
+        calculate_texture_x(game);
+        
+        /* 壁の描画 */
+        draw_wall(game, x);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 10:42:42 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:08:34 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,12 +158,6 @@ int		convert_map_data(t_game *game, char **map_lines, int height);
 
 /* raycasting */
 void	raycasting(t_game *game);
-void	calculate_ray(t_game *game, int x);
-void	perform_dda(t_game *game);
-void	calculate_wall_distance(t_game *game);
-void	calculate_wall_height(t_game *game);
-void	calculate_texture_x(t_game *game);
-void	draw_wall(t_game *game, int x);
 
 /* render */
 int		render(t_game *game);
