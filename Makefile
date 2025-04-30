@@ -6,7 +6,7 @@
 #    By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 10:37:24 by myokono           #+#    #+#              #
-#    Updated: 2025/04/29 18:21:20 by myokono          ###   ########.fr        #
+#    Updated: 2025/04/30 18:27:02 by myokono          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/parser/config_parser.c \
       $(SRC_DIR)/utils/utils.c \
       $(SRC_DIR)/raycasting/raycasting.c \
+      $(SRC_DIR)/raycasting/calculate_ray.c \
       $(SRC_DIR)/render/render.c \
       $(SRC_DIR)/utils/texture.c \
       $(SRC_DIR)/input/input.c \
