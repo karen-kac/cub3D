@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:40:24 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 18:52:03 by myokono          ###   ########.fr       */
+/*   Updated: 2025/04/30 18:58:03 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	raycasting(t_game *game)
 {
 	int	x;
 
-	x = 1;
+	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
 		calculate_ray(game, x);
