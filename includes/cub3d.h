@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 19:01:05 by myokono          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:21:52 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ typedef struct s_game
 	t_map		map;
 	int			floor_color;
 	int			ceiling_color;
-	int			keys[70000];
+	int			keys[65536];
 }	t_game;
 
 /* init */
