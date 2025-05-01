@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
+/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:37 by myokono           #+#    #+#             */
-/*   Updated: 2025/05/01 12:52:22 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:58:38 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ static bool	parse_color(t_game *game, char *line, char type)
 	if (rgb == NULL)
 		return (error_msg(ERR_MEMORY));
 	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
-		return (free_split(rgb), error_msg(ERR_CONFIG));
+		return (free_split(&rgb), error_msg(ERR_CONFIG));
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (free_split(rgb), error_msg(ERR_CONFIG));
+		return (free_split(&rgb), error_msg(ERR_CONFIG));
 	if (type == 'F')
 		game->floor_color = rgb_to_int(r, g, b);
 	else if (type == 'C')
 		game->ceiling_color = rgb_to_int(r, g, b);
-	free_split(rgb);
+	free_split(&rgb);
 	return (true);
 }
 

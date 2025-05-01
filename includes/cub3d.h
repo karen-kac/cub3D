@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
+/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/05/01 12:52:07 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:58:02 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ void	free_textures(t_game *game);
 
 /* utils */
 bool	error_msg(char *msg);
-void	free_split(char **split);
+void	free_split(char ***split);
 int		rgb_to_int(int r, int g, int b);
 int		get_next_line(int fd, char **line);
 bool	is_valid_extension(char *filename, char *ext);
