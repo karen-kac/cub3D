@@ -6,7 +6,7 @@
 /*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:02 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 10:37:48 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:52:00 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool	parse_map(t_game *game, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (error_msg(ERR_FILE));
-	if (parse_config(game, fd) == false)
+	if (parse_config(game, fd, 0) == false)
 		return (close(fd), false);
 	if (read_map_lines(fd, &map_lines, &height) == false)
 		return (close(fd), false);

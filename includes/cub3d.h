@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:37:41 by myokono           #+#    #+#             */
-/*   Updated: 2025/05/01 12:21:52 by myokono          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:52:07 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ bool	load_textures(t_game *game);
 
 /* parse */
 bool	parse_map(t_game *game, char *filename);
-bool	parse_config(t_game *game, int fd);
+bool	parse_config(t_game *game, int fd, int count);
 int		check_map(t_game *game);
 int		is_player(char c);
 int		find_player(t_game *game);

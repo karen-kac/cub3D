@@ -6,7 +6,7 @@
 /*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:37 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 10:48:56 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:52:22 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,11 @@ static bool	parse_config_line(t_game *game, char *line)
 	return (false);
 }
 
-bool	parse_config(t_game *game, int fd)
+bool	parse_config(t_game *game, int fd, int count)
 {
 	char	*line;
 	int		ret;
-	int		count;
 
-	count = 0;
 	while (count < 6)
 	{
 		ret = get_next_line(fd, &line);
