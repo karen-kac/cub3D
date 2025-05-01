@@ -6,7 +6,7 @@
 #    By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 10:37:24 by myokono           #+#    #+#              #
-#    Updated: 2025/04/30 18:52:50 by myokono          ###   ########.fr        #
+#    Updated: 2025/05/01 12:27:16 by myokono          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/raycasting/calculate_ray.c \
       $(SRC_DIR)/raycasting/calculate_wall.c \
       $(SRC_DIR)/render/render.c \
-      $(SRC_DIR)/utils/texture.c \
       $(SRC_DIR)/input/input.c \
       $(SRC_DIR)/input/input_rotate.c \
       $(SRC_DIR)/input/input_move.c \
