@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:51:28 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/27 19:39:59 by myokono          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:57:27 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,20 @@ void	cleanup_game(t_game *game)
 	}
 }
 
-void	free_split(char **split)
+void	free_split(char ***split)
 {
-	int	i;
+	int		i;
+	char	**tmp;
 
-	if (!split)
+	if (!split || !*split)
 		return ;
+	tmp = *split;
 	i = 0;
-	while (split[i])
+	while (tmp[i])
 	{
-		free(split[i]);
-		split[i] = NULL;
+		free(tmp[i]);
 		i++;
 	}
-	free(split);
+	free(tmp);
+	*split = NULL;
 }
