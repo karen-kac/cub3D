@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
+/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:38:01 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 10:40:12 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:39:59 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	main(int argc, char **argv)
 	init_player(&game);
 	if (load_textures(&game) == false)
 		return (cleanup_game(&game), EXIT_FAILURE);
-	mlx_hook(game.win, X_EVENT_KEY_PRESS, 1L<<0, key_press, &game);
-	mlx_hook(game.win, X_EVENT_KEY_RELEASE, 1L<<1, key_release, &game);
-	mlx_hook(game.win, X_EVENT_EXIT, 1L<<17, exit_hook, &game);
+	mlx_hook(game.win, X_EVENT_KEY_PRESS, 1L << 0, key_press, &game);
+	mlx_hook(game.win, X_EVENT_KEY_RELEASE, 1L << 1, key_release, &game);
+	mlx_hook(game.win, X_EVENT_EXIT, 1L << 17, exit_hook, &game);
 	mlx_loop_hook(game.mlx, render, &game);
 	mlx_loop(game.mlx);
 	return (EXIT_SUCCESS);
