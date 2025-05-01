@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
+/*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:41:21 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 11:44:35 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:36:45 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	if (x < 0 || y < 0 || x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT)
 		return ;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 static void	render_background(t_game *game)

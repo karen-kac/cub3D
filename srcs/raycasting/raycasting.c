@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:40:24 by myokono           #+#    #+#             */
-/*   Updated: 2025/04/30 18:58:03 by myokono          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:37:19 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	get_tex_color(t_img *img, int x, int y)
 	if (x < 0 || y < 0 || x >= img->width || y >= img->height)
 		return (0);
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	return (*(unsigned int*) dst);
+	return (*(unsigned int *) dst);
 }
 
 static void	draw_wall(t_game *game, int x)
