@@ -6,7 +6,7 @@
 /*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:02 by myokono           #+#    #+#             */
-/*   Updated: 2025/05/01 12:59:00 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/05/01 13:15:16 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,30 @@ static void	free_map_lines(char **lines, int height)
 	free(lines);
 }
 
+static int	ft_helper(char *line, char ***map_lines, int *height)
+{
+	int		i;
+	char	**new_map_lines;
+
+	new_map_lines = malloc(sizeof(char *) * (*height + 2));
+	if (!new_map_lines)
+		return (free(line), error_msg(ERR_MEMORY));
+	i = 0;
+	while (i < *height)
+	{
+		new_map_lines[i] = (*map_lines)[i];
+		i++;
+	}
+	new_map_lines[*height] = line;
+	new_map_lines[*height + 1] = NULL;
+	free(*map_lines);
+	*map_lines = new_map_lines;
+	return (true);
+}
+
 static int	read_map_lines(int fd, char ***map_lines, int *height)
 {
 	char	*line;
-	char	**new_map_lines;
-	int		i;
 
 	*map_lines = NULL;
 	*height = 0;
@@ -43,19 +62,8 @@ static int	read_map_lines(int fd, char ***map_lines, int *height)
 			free(line);
 			continue ;
 		}
-		new_map_lines = malloc(sizeof(char *) * (*height + 2));
-		if (!new_map_lines)
-			return (free(line), error_msg(ERR_MEMORY));
-		i = 0;
-		while (i < *height)
-		{
-			new_map_lines[i] = (*map_lines)[i];
-			i++;
-		}
-		new_map_lines[*height] = line;
-		new_map_lines[*height + 1] = NULL;
-		free(*map_lines);
-		*map_lines = new_map_lines;
+		if (ft_helper(line, map_lines, height) == false)
+			return (false);
 		(*height)++;
 	}
 	free(line);
