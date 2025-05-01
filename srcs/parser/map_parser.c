@@ -6,7 +6,7 @@
 /*   By: ryabuki <ryabuki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:02 by myokono           #+#    #+#             */
-/*   Updated: 2025/05/01 12:52:00 by ryabuki          ###   ########.fr       */
+/*   Updated: 2025/05/01 12:59:00 by ryabuki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,7 @@ bool	parse_map(t_game *game, char *filename)
 		return (free(map_lines), error_msg(ERR_MAP));
 	if (!convert_map_data(game, map_lines, height))
 		return (free_map_lines(map_lines, height), false);
-	if (check_map(game) == false)
-	{
-		free_map_lines(map_lines, height);
-		free_map(&game->map);
-		return (false);
-	}
-	if (find_player(game) == false)
+	if (check_map(game) == false || find_player(game) == false)
 	{
 		free_map_lines(map_lines, height);
 		free_map(&game->map);
